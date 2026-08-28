@@ -19,7 +19,7 @@ The `ScrollView` receives a new item at the top. For one frame the visible rows 
 - **Environment:** Expo 57, React Native 0.86.3, New Architecture, Android. Pixel 9 Pro emulator, API 36. Not seen on iOS.
 - **Symptom:** launch the app. One item is added at the top every 150 ms. The rows shake on almost every insert
 
-![reproduction example](./recordings/issue.mp4)
+![reproduction example, half speed](./recordings/issue.gif)
 
 
 ### Suspected root cause
@@ -41,7 +41,7 @@ Call `scrollView.invalidate()` after each `scrollToPreservingMomentum` in `Maint
 
 The local Expo module `modules/scroll-view-invalidation` demonstrates the effect without a patch to React Native. It registers a `UIManagerListener` (experimental API) and invalidates every `ReactScrollView` in `didMountItems`. It is not the patch itself. The `invalidate ScrollView after mount: on/off` button toggles it at runtime
 
-![after fix][./recordings/invalidation-workaround.mp4]
+![after invalidation, half speed](./recordings/invalidation-workaround.gif)
 
 ## The app
 
